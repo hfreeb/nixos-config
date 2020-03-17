@@ -1,40 +1,10 @@
 { pkgs, lib, ... }:
 {
-  home.packages = with pkgs; [
-    cmatrix sl
-  ];
-
   home.file.".xinitrc".text = ''
     exec i3
   '';
 
   home.file.".config/i3/status.conf".text = builtins.readFile ./status.conf;
-
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    extraConfig = builtins.readFile ./vimrc;
-    plugins = with pkgs.vimPlugins; [
-      airline
-      gruvbox
-      vim-nix
-    ];
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Desetude";
-    userEmail = "harry@desetude.com";
-  };
-
-  programs.fish = {
-    enable = true;
-    shellInit = ''
-      set fish_greeting
-    '';
-    promptInit = builtins.readFile ./fish_prompt.fish;
-  };
 
   xsession.windowManager.i3 = rec {
     enable = true;

@@ -1,0 +1,5 @@
+Credits
+=======
+
+- clearance
+  * https://github.com/oh-my-fish/theme-clearance

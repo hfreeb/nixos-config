@@ -116,7 +116,7 @@ in
     shell = "/run/current-system/sw/bin/fish";
   };
 
-  home-manager.users.harry = import ./home.nix;
+  home-manager.users.harry = import ./home;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
