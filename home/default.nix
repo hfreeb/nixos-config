@@ -9,5 +9,6 @@
     ./git
     ./i3
     ./nvim
+    ./termite
   ];
 }
