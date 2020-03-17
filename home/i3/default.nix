@@ -9,6 +9,7 @@
   xsession.windowManager.i3 = rec {
     enable = true;
     config = let workspaces = [
+        "0: root"
         "1: main"
         "2: www"
         "3: dev"
@@ -56,10 +57,10 @@
         # Screen brightness controls
         "XF86MonBrightnessUp" = "exec xbacklight -inc 20"; # increase screen brightness
         "XF86MonBrightnessDown" = "exec xbacklight -dec 20"; # decrease screen brightness
-      } // builtins.listToAttrs (lib.imap1 (i: v: {
+      } // builtins.listToAttrs (lib.imap0 (i: v: {
         name = "${modifier}+Shift+${toString i}";
         value = "move container to workspace ${v}";
-      }) workspaces) // builtins.listToAttrs (lib.imap1 (i: v: {
+      }) workspaces) // builtins.listToAttrs (lib.imap0 (i: v: {
         name = "${modifier}+${toString i}";
         value = "workspace ${v}";
       }) workspaces));
