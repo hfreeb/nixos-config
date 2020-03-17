@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
-    cmatrix sl
+    cmatrix sl maim
   ];
 
   imports = [
