@@ -51,7 +51,7 @@ in {
         };
 
         keybindings = lib.mkOptionDefault ({
-          "${modifier}+c" = "exec brave";
+          "${modifier}+c" = "exec firefox";
           "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
           "${modifier}+e" = "exec termite -e ranger";
           "${modifier}+s" = "exec maim -s | xclip -selection clipboard -t image/png";
