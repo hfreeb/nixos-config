@@ -1,10 +1,30 @@
 { config, pkgs, lib, ... }:
-
-let cfg = config.me.i3;
+let
+  cfg = config.me.i3;
 in {
-  options.me.i3.background = with lib; mkOption { type = types.path; };
+  options.me.i3 = {
+    background = with lib; mkOption { type = types.path; };
+    monitorAssigns = with lib; mkOption { type = types.attrsOf types.str; default = {}; };
+  };
 
-  config = {
+  config = let
+    workspaces = [
+      { name = "0: root"; assigns = []; }
+      { name = "1: main"; assigns = []; }
+      { name = "2: www"; assigns = [
+        { class = "^Firefox$"; }
+      ]; }
+      { name = "3: dev"; assigns = []; }
+      { name = "4: p2p"; assigns = [
+        { class = "^discord$"; }
+      ]; }
+      { name = "5: misc1"; assigns = []; }
+      { name = "6: misc2"; assigns = []; }
+      { name = "7: misc3"; assigns = []; }
+      { name = "8: misc4"; assigns = []; }
+      { name = "9: misc5"; assigns = []; }
+    ];
+  in {
     home.file.".xinitrc".text = ''
       exec i3
     '';
@@ -15,22 +35,7 @@ in {
 
     xsession.windowManager.i3 = rec {
       enable = true;
-      config = let workspaces = [
-          { name = "0: root"; assigns = []; }
-          { name = "1: main"; assigns = []; }
-          { name = "2: www"; assigns = [
-            { class = "^Firefox$"; }
-          ]; }
-          { name = "3: dev"; assigns = []; }
-          { name = "4: p2p"; assigns = [
-            { class = "discord"; }
-          ]; }
-          { name = "5: misc1"; assigns = []; }
-          { name = "6: misc2"; assigns = []; }
-          { name = "7: misc3"; assigns = []; }
-          { name = "8: misc4"; assigns = []; }
-          { name = "9: misc5"; assigns = []; }
-        ];
+      config = let
         bg = "#282828";
         blue = "#458588";
         darkGrey = "#1d2021";
@@ -154,6 +159,11 @@ in {
           };
         } ];
       };
+
+      extraConfig = lib.concatStringsSep "\n" (lib.mapAttrsToList
+        (name: value: "workspace ${(builtins.elemAt workspaces (lib.toInt name)).name} output ${value}")
+        cfg.monitorAssigns
+      );
     };
   };
 }
