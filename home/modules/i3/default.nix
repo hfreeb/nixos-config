@@ -90,7 +90,7 @@ in {
             notification = false;
           }
           {
-            command = "i3-msg workspace 1";
+            command = "i3-msg workspace " + (builtins.elemAt workspaces 1).name;
             notification = false;
           }
         ];
