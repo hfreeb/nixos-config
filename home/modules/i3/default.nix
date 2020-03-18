@@ -16,16 +16,20 @@ in {
     xsession.windowManager.i3 = rec {
       enable = true;
       config = let workspaces = [
-          "0: root"
-          "1: main"
-          "2: www"
-          "3: dev"
-          "4: p2p"
-          "5: misc1"
-          "6: misc2"
-          "7: misc3"
-          "8: misc4"
-          "9: misc5"
+          { name = "0: root"; assigns = []; }
+          { name = "1: main"; assigns = []; }
+          { name = "2: www"; assigns = [
+            { class = "^Firefox$"; }
+          ]; }
+          { name = "3: dev"; assigns = []; }
+          { name = "4: p2p"; assigns = [
+            { class = "discord"; }
+          ]; }
+          { name = "5: misc1"; assigns = []; }
+          { name = "6: misc2"; assigns = []; }
+          { name = "7: misc3"; assigns = []; }
+          { name = "8: misc4"; assigns = []; }
+          { name = "9: misc5"; assigns = []; }
         ];
         bg = "#282828";
         blue = "#458588";
@@ -50,6 +54,11 @@ in {
           titlebar = false;
         };
 
+        assigns = lib.listToAttrs (map (workspace: lib.mapAttrs'
+          (name: value: lib.nameValuePair (if name == "assigns" then "value" else name) value)
+          (lib.filterAttrs (name: value: name == "name" || name == "assigns") workspace)
+        ) workspaces);
+
         keybindings = lib.mkOptionDefault ({
           "${modifier}+c" = "exec firefox";
           "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
@@ -69,15 +78,19 @@ in {
           "XF86MonBrightnessDown" = "exec xbacklight -dec 20"; # decrease screen brightness
         } // builtins.listToAttrs (lib.imap0 (i: v: {
           name = "${modifier}+Shift+${toString i}";
-          value = "move container to workspace ${v}";
+          value = "move container to workspace ${v.name}";
         }) workspaces) // builtins.listToAttrs (lib.imap0 (i: v: {
           name = "${modifier}+${toString i}";
-          value = "workspace ${v}";
+          value = "workspace ${v.name}";
         }) workspaces));
 
         startup = [
           {
             command = "feh --bg-scale $HOME/.config/i3/background.png";
+            notification = false;
+          }
+          {
+            command = "i3-msg workspace 1";
             notification = false;
           }
         ];
