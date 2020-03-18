@@ -17,6 +17,7 @@
     feh
     weechat
     discord
+    jetbrains.idea-ultimate
   ];
 
   home.sessionVariables = {
