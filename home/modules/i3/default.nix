@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
-let cfg = config.desetude;
+let cfg = config.me.i3;
 in {
-  options.desetude.background = with lib; mkOption { type = types.path; };
+  options.me.i3.background = with lib; mkOption { type = types.path; };
 
   config = {
     home.file.".xinitrc".text = ''
