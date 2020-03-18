@@ -6,7 +6,7 @@
 
   home.file.".config/i3/status.conf".text = builtins.readFile ./status.conf;
 
-  home.file.".config/i3/background.png".source = ./earth_at_night.png;
+  home.file.".config/i3/background.png".source = ../background/earth_at_night_1366x768.png;
 
   xsession.windowManager.i3 = rec {
     enable = true;
