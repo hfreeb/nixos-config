@@ -13,6 +13,7 @@
     sl
     maim
     feh
+    weechat
   ];
 
   home.sessionVariables = {
