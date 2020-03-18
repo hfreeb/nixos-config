@@ -11,4 +11,9 @@
   home.packages = with pkgs; [
     cmatrix sl maim
   ];
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    TERMINAL = "termite";
+  };
 }
