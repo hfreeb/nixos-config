@@ -9,7 +9,10 @@
   ];
 
   home.packages = with pkgs; [
-    cmatrix sl maim
+    cmatrix
+    sl
+    maim
+    feh
   ];
 
   home.sessionVariables = {

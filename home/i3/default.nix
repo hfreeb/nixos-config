@@ -6,6 +6,8 @@
 
   home.file.".config/i3/status.conf".text = builtins.readFile ./status.conf;
 
+  home.file.".config/i3/background.png".source = ./earth_at_night.png;
+
   xsession.windowManager.i3 = rec {
     enable = true;
     config = let workspaces = [
@@ -32,21 +34,24 @@
       terminal = "termite";
       menu = "dmenu_run -p \"Run:\" -l 10";
       fonts = [ "Iosevka Term" "Font Awesome 8" ];
+
       window = {
         border = 2;
         titlebar = false;
       };
+
       floating = {
         border = 2;
         titlebar = false;
       };
+
       keybindings = lib.mkOptionDefault ({
         "${modifier}+c" = "exec brave";
         "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
         "${modifier}+e" = "exec termite -e ranger";
         "${modifier}+s" = "exec maim -s | xclip -selection clipboard -t image/png";
         "${modifier}+Shift+s" = "exec maim -s $HOME/Pictures/screenshots/$(date --iso-8601=\"seconds\").png";
-        "${modifier}+i" = "exec i3lock";
+        "${modifier}+i" = "exec i3lock -i $HOME/.config/i3/background.png";
         "${modifier}+Shift+i" = "exec i3lock && systemctl suspend";
 
         # Pulse Audio controls
@@ -64,6 +69,14 @@
         name = "${modifier}+${toString i}";
         value = "workspace ${v}";
       }) workspaces));
+
+      startup = [
+        {
+          command = "feh --bg-scale $HOME/.config/i3/background.png";
+          notification = false;
+        }
+      ];
+
       colors = {
         focused = {
           border = blue;
@@ -94,6 +107,7 @@
           childBorder = red;
         };
       };
+
       bars = [ {
         position = "top";
         statusCommand = "i3status -c $HOME/.config/i3/status.conf";
