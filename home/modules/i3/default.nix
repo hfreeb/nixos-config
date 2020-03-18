@@ -65,7 +65,7 @@ in {
           "${modifier}+e" = "exec termite -e ranger";
           "${modifier}+s" = "exec maim -s | xclip -selection clipboard -t image/png";
           "${modifier}+Shift+s" = "exec maim -s $HOME/Pictures/screenshots/$(date --iso-8601=\"seconds\").png";
-          "${modifier}+i" = "exec i3lock -i $HOME/.config/i3/background.png";
+          "${modifier}+i" = "exec i3lock -t -i $HOME/.config/i3/background.png";
           "${modifier}+Shift+i" = "exec i3lock && systemctl suspend";
 
           # Pulse Audio controls
