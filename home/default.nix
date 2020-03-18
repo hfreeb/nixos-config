@@ -1,11 +1,11 @@
 { pkgs, lib, ... }:
 {
   imports = [
-    ./fish
-    ./git
-    ./i3
-    ./nvim
-    ./termite
+    ./modules/fish
+    ./modules/git
+    ./modules/i3
+    ./modules/nvim
+    ./modules/termite
   ];
 
   home.packages = with pkgs; [

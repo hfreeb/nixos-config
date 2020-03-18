@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 {
-  imports = [
-    ../users
-  ];
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -65,6 +61,12 @@
     displayManager.defaultSession = "none+i3";
     desktopManager.xterm.enable = false;
     windowManager.i3.enable = true;
+  };
+
+  users.users.harry = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    shell = "/run/current-system/sw/bin/fish";
   };
 
   # This value determines the NixOS release with which your system is to be
