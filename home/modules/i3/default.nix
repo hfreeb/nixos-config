@@ -161,7 +161,7 @@ in {
       };
 
       extraConfig = lib.concatStringsSep "\n" (lib.mapAttrsToList
-        (name: value: "workspace ${(builtins.elemAt workspaces (lib.toInt name)).name} output ${value}")
+        (name: value: "workspace \"${(builtins.elemAt workspaces (lib.toInt name)).name}\" output ${value}")
         cfg.monitorAssigns
       );
     };
