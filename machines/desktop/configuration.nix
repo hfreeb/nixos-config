@@ -10,6 +10,10 @@
   networking.useDHCP = false;
   networking.interfaces.enp3s0.useDHCP = true;
 
+  nixpkgs.config.allowUnfree = true;
+  environment.systemPackages = with pkgs; [ minecraft ];
+  services.xserver.videoDrivers = [ "nvidia" ];
+
   home-manager.users.harry = { ... }: {
     imports = [ ../../home ];
 
