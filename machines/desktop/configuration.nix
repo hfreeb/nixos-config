@@ -4,7 +4,6 @@
     <home-manager/nixos>
     ./hardware-configuration.nix
     ../../common
-    ../../common/pci-passthrough.nix
   ];
 
   networking.hostName = "halifax";
