@@ -4,6 +4,7 @@
     <home-manager/nixos>
     ./hardware-configuration.nix
     ../../common
+    ../../common/pci-passthrough.nix
   ];
 
   networking.hostName = "halifax";
@@ -26,5 +27,15 @@
         "4" = "DVI-I-1";
       };
     };
+  };
+
+  pciPassthrough = {
+    # enable = true;
+    pciIDs = "10de:13c2,10de:0fbb";
+    inputDevices = [
+      "/dev/input/by-id/usb-Logitech_USB_Receiver-if02-event-mouse"
+      "/dev/input/by-id/usb-Razer_Razer_DeathStalker-event-kbd"
+    ];
+    libvirtUsers = [ "harry" ];
   };
 }
