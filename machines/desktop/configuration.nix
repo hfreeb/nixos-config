@@ -11,11 +11,11 @@
   networking.interfaces.enp3s0.useDHCP = true;
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [ minecraft ];
   services.xserver.videoDrivers = [ "nvidia" ];
 
   home-manager.users.harry = { ... }: {
     imports = [ ../../home ];
+    home.packages = with pkgs; [ minecraft runelite ];
 
     me.i3 = {
       background = ../../home/modules/i3/background/earth_at_night_1920x1080.png;
