@@ -21,6 +21,12 @@
       fsType = "vfat";
     };
 
+  fileSystems."/mnt/d" =
+    { device = "/dev/sda1";
+      fsType = "ntfs";
+      options = [ "rw" "uid=1000" ];
+    };
+
   swapDevices = [ ];
 
   nix.maxJobs = lib.mkDefault 4;
