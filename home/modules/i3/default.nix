@@ -2,6 +2,10 @@
 let
   cfg = config.me.i3;
 in {
+  imports = [
+    ../dunst
+  ];
+
   options.me.i3 = {
     background = with lib; mkOption { type = types.path; };
     monitorAssigns = with lib; mkOption { type = types.attrsOf types.str; default = {}; };
@@ -25,6 +29,8 @@ in {
       { name = "9: misc5"; assigns = []; }
     ];
   in {
+    home.packages = with pkgs; [ feh maim ];
+
     home.file.".xinitrc".text = ''
       exec i3
     '';
@@ -96,6 +102,10 @@ in {
           }
           {
             command = "i3-msg workspace " + (builtins.elemAt workspaces 1).name;
+            notification = false;
+          }
+          {
+            command = "dunst";
             notification = false;
           }
         ];

@@ -13,8 +13,6 @@
   home.packages = with pkgs; [
     cmatrix
     sl
-    maim
-    feh
     weechat
     discord
     jetbrains.idea-ultimate
