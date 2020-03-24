@@ -4,6 +4,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  networking.nameservers = [ "9.9.9.9" "149.112.112.112" ];
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
 
