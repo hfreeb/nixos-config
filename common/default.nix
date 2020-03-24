@@ -59,7 +59,12 @@
     enable = true;
     layout = "gb";
     xkbOptions = "caps:swapescape";
-    libinput.enable = true;
+    libinput = {
+      enable = true;
+      middleEmulation = false;
+      accelProfile = "flat";
+      accelSpeed = "0";
+    };
     displayManager.startx.enable = true;
     displayManager.defaultSession = "none+i3";
     desktopManager.xterm.enable = false;
