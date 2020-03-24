@@ -56,6 +56,13 @@
     windowManager.i3.enable = true;
   };
 
+  services.openvpn.servers = {
+    c = {
+      config = '' config /etc/nixos/openvpn/c.ovpn '';
+      autoStart = false;
+    };
+  };
+
   users.users.harry = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
