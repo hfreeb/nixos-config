@@ -77,7 +77,7 @@ in {
           "${modifier}+s" = "exec maim -s | xclip -selection clipboard -t image/png";
           "${modifier}+Shift+s" = "exec maim -s $HOME/Pictures/screenshots/$(date --iso-8601=\"seconds\").png";
           "${modifier}+i" = "exec i3lock -t -i $HOME/.config/i3/background.png";
-          "${modifier}+Shift+i" = "exec i3lock && systemctl suspend";
+          "${modifier}+Shift+i" = "exec i3lock -t -i $HOME/.config/i3/background.png && systemctl suspend";
 
           # Pulse Audio controls
           "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%"; #increase sound volume
