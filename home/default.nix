@@ -16,6 +16,7 @@
     weechat
     discord
     jetbrains.idea-ultimate
+    pulsemixer
   ];
 
   home.sessionVariables = {
