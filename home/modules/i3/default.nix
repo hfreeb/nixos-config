@@ -29,7 +29,7 @@ in {
       { name = "9: misc5"; assigns = []; }
     ];
   in {
-    home.packages = with pkgs; [ feh maim ];
+    home.packages = with pkgs; [ feh maim xclip ];
 
     home.file.".xinitrc".text = ''
       exec i3
