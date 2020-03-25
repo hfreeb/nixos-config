@@ -12,6 +12,7 @@
       gruvbox
       vim-nix
       coc-nvim
+      coc-python
     ];
   };
 }

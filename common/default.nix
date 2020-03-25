@@ -43,13 +43,16 @@
     firefox
     termite
     git
-    neovim
     ranger
     hwinfo
     pciutils
     go
     gotools
     nodejs
+    python3
+    python3Packages.pylint
+    python3Packages.jedi
+    neovim
   ];
 
   programs.fish.enable = true;

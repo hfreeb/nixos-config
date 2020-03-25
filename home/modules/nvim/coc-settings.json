@@ -6,5 +6,7 @@
       "disableWorkspaceFolders": true,
       "filetypes": ["go"]
     }
-  }
+  },
+  "python.pythonPath": "/run/current-system/sw/bin/python3",
+  "python.linting.pylintPath": "/run/current-system/sw/bin/python3"
 }
