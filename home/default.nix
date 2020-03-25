@@ -17,6 +17,7 @@
     discord
     jetbrains.idea-ultimate
     pulsemixer
+    nmap
   ];
 
   home.sessionVariables = {
