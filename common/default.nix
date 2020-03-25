@@ -55,6 +55,8 @@
     neovim
   ];
 
+  programs.gnupg.agent.enable = true;
+
   programs.fish.enable = true;
 
   sound.enable = true;
