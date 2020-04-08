@@ -64,6 +64,7 @@
     pciutils
     go
     gotools
+    golint
     nodejs
     mypy
     neovim
