@@ -18,6 +18,7 @@
     jetbrains.idea-ultimate
     pulsemixer
     nmap
+    gimp
   ];
 
   home.sessionVariables = {
