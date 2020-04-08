@@ -68,6 +68,9 @@
     nodejs
     mypy
     neovim
+    openjdk11
+    gnumake
+    p7zip
   ];
 
   programs.gnupg.agent.enable = true;
