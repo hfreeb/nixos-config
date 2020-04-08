@@ -43,7 +43,17 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = let
+    mypy = pkgs.python3.withPackages(p: with p; [
+      pylint
+      jedi
+      numpy
+      jupyterlab
+      scipy
+      matplotlib
+      pandas
+    ]);
+  in with pkgs; [
     wget
     firefox
     termite
@@ -54,9 +64,7 @@
     go
     gotools
     nodejs
-    python3
-    python3Packages.pylint
-    python3Packages.jedi
+    mypy
     neovim
   ];
 
