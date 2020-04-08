@@ -56,6 +56,7 @@
   in with pkgs; [
     wget
     firefox
+    chromium
     termite
     git
     ranger
