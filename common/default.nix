@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
 {
+  imports = [ ./vpn.nix ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -94,13 +96,6 @@
     displayManager.defaultSession = "none+i3";
     desktopManager.xterm.enable = false;
     windowManager.i3.enable = true;
-  };
-
-  services.openvpn.servers = {
-    c = {
-      config = '' config /etc/nixos/openvpn/c.ovpn '';
-      autoStart = false;
-    };
   };
 
   users.users.harry = {
