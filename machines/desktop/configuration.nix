@@ -11,7 +11,13 @@
   networking.interfaces.enp3s0.useDHCP = true;
 
   nixpkgs.config.allowUnfree = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver= {
+    videoDrivers = [ "nvidia" ];
+    xrandrHeads = [
+      { output = "DVI-I-1"; primary = true; }
+      "DVI-D-0"
+    ];
+  };
 
   home-manager.users.harry = { ... }: {
     imports = [ ../../home ];
