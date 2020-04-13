@@ -56,6 +56,8 @@
       pandas
     ]);
   in with pkgs; [
+    gcc
+    binutils
     wget
     firefox
     chromium
