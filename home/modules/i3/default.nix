@@ -67,7 +67,7 @@ in {
 
         assigns = lib.listToAttrs (map (workspace: lib.mapAttrs'
           (name: value: lib.nameValuePair (if name == "assigns" then "value" else name) value)
-          (lib.filterAttrs (name: value: name == "name" || name == "assigns") workspace)
+          (lib.filterAttrs (name: _: name == "name" || name == "assigns") workspace)
         ) workspaces);
 
         keybindings = {

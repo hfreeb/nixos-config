@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 {
   imports = [
     <nixos-hardware/lenovo/thinkpad>
