@@ -70,7 +70,39 @@ in {
           (lib.filterAttrs (name: value: name == "name" || name == "assigns") workspace)
         ) workspaces);
 
-        keybindings = lib.mkOptionDefault ({
+        keybindings = {
+          "${modifier}+Return" = "exec ${terminal}";
+          "${modifier}+Shift+q" = "kill";
+          "${modifier}+d" = "exec ${menu}";
+
+          "${modifier}+h" = "focus left";
+          "${modifier}+j" = "focus down";
+          "${modifier}+k" = "focus up";
+          "${modifier}+l" = "focus right";
+
+          "${modifier}+Shift+h" = "move left";
+          "${modifier}+Shift+j" = "move down";
+          "${modifier}+Shift+k" = "move up";
+          "${modifier}+Shift+l" = "move right";
+
+          "${modifier}+b" = "split h";
+          "${modifier}+v" = "split v";
+          "${modifier}+f" = "fullscreen toggle";
+
+          "${modifier}+Shift+space" = "floating toggle";
+          "${modifier}+space" = "focus mode_toggle";
+
+          "${modifier}+a" = "focus parent";
+
+          "${modifier}+Shift+minus" = "move scratchpad";
+          "${modifier}+minus" = "scratchpad show";
+
+          "${modifier}+Shift+c" = "reload";
+          "${modifier}+Shift+r" = "restart";
+          "${modifier}+Shift+e" = "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
+
+          "${modifier}+r" = "mode resize";
+
           "${modifier}+c" = "exec firefox";
           "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
           "${modifier}+e" = "exec termite -e ranger";
@@ -80,8 +112,8 @@ in {
           "${modifier}+Shift+i" = "exec i3lock -t -i $HOME/.config/i3/background.png && systemctl suspend";
 
           # Pulse Audio controls
-          "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%"; #increase sound volume
-          "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%"; #decrease sound volume
+          "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%"; # increase sound volume
+          "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%"; # decrease sound volume
           "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle"; # mute sound
 
           # Screen brightness controls
@@ -93,7 +125,7 @@ in {
         }) workspaces) // builtins.listToAttrs (lib.imap0 (i: v: {
           name = "${modifier}+${toString i}";
           value = "workspace ${v.name}";
-        }) workspaces));
+        }) workspaces);
 
         startup = [
           {
