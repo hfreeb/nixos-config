@@ -33,8 +33,6 @@ in {
     time.timeZone = "Europe/London";
 
     nixpkgs.config = {
-      allowUnfree = true;
-
       packageOverrides = super: let self = super.pkgs; in {
         iosevka-term = self.iosevka.override {
           set = "term";
@@ -47,8 +45,6 @@ in {
           };
         };
       };
-
-      firefox.enableAdobeFlash = true;
     };
 
     fonts.fonts = with pkgs; [
@@ -126,7 +122,6 @@ in {
       shell = "/run/current-system/sw/bin/fish";
       hashedPassword = secrets.hashedPassword;
     };
-
 
     nix = {
       nixPath = [
