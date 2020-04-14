@@ -3,7 +3,12 @@
   programs.fish = {
     enable = true;
     shellInit = ''
-      set fish_greeting
+      function fish_greeting
+        status --is-login
+        if [ $status -eq 0 ]
+          ${./doomsday.py}
+        end
+      end
     '';
     promptInit = builtins.readFile ./fish_prompt.fish;
   };
