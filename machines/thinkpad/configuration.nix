@@ -6,8 +6,6 @@
     ../../common
   ];
 
-  me.machine = "thinkpad";
-
   networking.hostName = "harrogate";
   networking.useDHCP = false;
   networking.interfaces.enp0s25.useDHCP = true;

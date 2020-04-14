@@ -6,8 +6,6 @@
     ../../common
   ];
 
-  me.machine = "desktop";
-
   networking.hostName = "halifax";
   networking.useDHCP = false;
   networking.interfaces.enp3s0.useDHCP = true;
