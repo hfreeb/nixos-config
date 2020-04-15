@@ -7,7 +7,7 @@ in {
     userName = "Harry Freeborough";
     userEmail = secrets.email;
     signing = {
-      key = "7BAC3284F76546D2";
+      key = "691EF7EF51D10E69";
       signByDefault = true;
     };
   };
