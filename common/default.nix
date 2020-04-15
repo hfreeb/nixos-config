@@ -76,6 +76,7 @@ in {
     gnumake
     p7zip
     openconnect_pa
+    tree
   ];
 
   programs.gnupg.agent.enable = true;
