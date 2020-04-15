@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     <home-manager/nixos>
@@ -6,6 +6,13 @@
     ../../common
   ];
 
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r rpool/local/root@blank
+  '';
+
+  environment.etc."nixos/configuration.nix".source= "/persist/etc/nixos/machines/desktop/configuration.nix";
+
+  networking.hostId = "45a9c894";
   networking.hostName = "halifax";
   networking.useDHCP = false;
   networking.interfaces.enp3s0.useDHCP = true;
