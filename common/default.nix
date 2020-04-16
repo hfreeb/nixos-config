@@ -77,6 +77,8 @@ in {
     p7zip
     openconnect_pa
     tree
+    nmap
+    file
   ];
 
   programs.gnupg.agent.enable = true;

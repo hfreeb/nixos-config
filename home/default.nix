@@ -17,7 +17,6 @@
     discord
     jetbrains.idea-ultimate
     pulsemixer
-    nmap
     gimp
   ];
 
