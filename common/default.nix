@@ -117,6 +117,10 @@ in {
     shell = "/run/current-system/sw/bin/fish";
     hashedPassword = secrets.hashedPassword;
   };
+  # Add lectured file, so the sudo lecture isn't displayed on first use
+  systemd.tmpfiles.rules = [
+    "L /var/db/sudo/lectured/harry - - - - /persist/var/db/sudo/lectured/harry"
+  ];
 
   nix.gc = {
     automatic = true;
