@@ -31,7 +31,7 @@
     home.packages = with pkgs; [ minecraft runelite ];
 
     me.i3 = {
-      background = ../../home/modules/i3/background/nixos_nord.png;
+      background = ../../home/i3/background/nixos_nord.png;
       monitorAssigns = {
         "1" = "DVI-D-1";
         "2" = "DVI-I-1";

@@ -15,6 +15,6 @@
   home-manager.users.harry = { ... }: {
     imports = [ ../../home ];
 
-    me.i3.background = ../../home/modules/i3/background/earth_at_night_1366x768.png;
+    me.i3.background = ../../home/i3/background/earth_at_night_1366x768.png;
   };
 }

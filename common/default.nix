@@ -60,6 +60,7 @@ in {
     binutils
     wget
     firefox
+    lastpass-cli
     chromium
     termite
     git

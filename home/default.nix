@@ -1,11 +1,11 @@
 { pkgs, ... }:
 {
   imports = [
-    ./modules/fish
-    ./modules/git
-    ./modules/i3
-    ./modules/nvim
-    ./modules/termite
+    ./fish
+    ./git
+    ./i3
+    ./nvim
+    ./termite
   ];
 
   nixpkgs.config.allowUnfree = true;
