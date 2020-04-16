@@ -18,6 +18,7 @@
     jetbrains.idea-ultimate
     pulsemixer
     gimp
+    zathura
   ];
 
   home.sessionVariables = {
@@ -33,6 +34,7 @@
       "text/html" = browser;
       "x-scheme-handler/http" = browser;
       "x-scheme-handler/https" = browser;
+      "application/pdf" = "zathura";
     };
   };
 }
