@@ -18,6 +18,7 @@
     jetbrains.idea-ultimate
     pulsemixer
     gimp
+    neofetch
     zathura
   ];
 
