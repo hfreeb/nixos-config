@@ -42,6 +42,12 @@
       options = [ "rw" "uid=1000" ];
     };
 
+  fileSystems."/mnt/two" =
+    { device = "/dev/sdb1";
+      fsType = "ntfs";
+      options = [ "rw" "uid=1000" ];
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/9b1d152b-32cc-4b7b-afbb-1fd44f4ff794"; }
     ];
