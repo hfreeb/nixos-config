@@ -1,10 +1,15 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.me.i3;
+  cfg = config.hfreeb.graphical;
 in {
-  options.me.i3 = {
-    background = with lib; mkOption { type = types.path; };
-    monitorAssigns = with lib; mkOption { type = types.attrsOf types.str; default = {}; };
+  options.hfreeb.graphical = {
+    background = with lib; mkOption {
+      type = types.path;
+    };
+    wm.i3.monitorAssigns = with lib; mkOption {
+      type = types.attrsOf types.str;
+      default = {};
+    };
   };
 
   config = let
@@ -25,8 +30,6 @@ in {
       { name = "9: misc5"; assigns = []; }
     ];
   in {
-    home.packages = with pkgs; [ feh maim xclip ];
-
     home.file.".xinitrc".text = ''
       exec i3
     '';
@@ -196,7 +199,7 @@ in {
 
       extraConfig = lib.concatStringsSep "\n" (lib.mapAttrsToList
         (name: value: "workspace \"${(builtins.elemAt workspaces (lib.toInt name)).name}\" output ${value}")
-        cfg.monitorAssigns
+        cfg.wm.i3.monitorAssigns
       );
     };
   };

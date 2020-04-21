@@ -35,9 +35,9 @@
         "${pkgs.coreutils}/bin/cp -i -v --target-directory=/mnt/two/archive/other/ $@")
     ];
 
-    me.i3 = {
+    hfreeb.graphical = {
       background = ../../home/i3/background/nixos_nord.png;
-      monitorAssigns = {
+      wm.i3.monitorAssigns = {
         "1" = "DVI-D-1";
         "2" = "DVI-I-1";
         "3" = "DVI-D-1";

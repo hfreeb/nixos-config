@@ -21,6 +21,9 @@
     gimp
     neofetch
     zathura
+    feh
+    maim
+    xclip
   ];
 
   home.sessionVariables = {
