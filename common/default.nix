@@ -90,8 +90,6 @@ in {
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  services.openvpn.servers = secrets.vpnServers;
-
   services.xserver = {
     enable = true;
     layout = "gb";
