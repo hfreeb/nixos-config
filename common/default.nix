@@ -2,9 +2,10 @@
 let
   secrets = import ../secrets.nix;
 in {
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   networking.nameservers = [ "9.9.9.9" "149.112.112.112" ];
   # Generate read-only resolv.conf to stop dhcpcd appending to it.
