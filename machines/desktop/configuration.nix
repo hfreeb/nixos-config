@@ -28,7 +28,12 @@
 
   home-manager.users.harry = { ... }: {
     imports = [ ../../home ];
-    home.packages = with pkgs; [ minecraft runelite ];
+    home.packages = with pkgs; [
+      minecraft
+      runelite
+      (writeShellScriptBin "archive"
+        "${pkgs.coreutils}/bin/cp -i -v --target-directory=/mnt/two/archive/other/ $@")
+    ];
 
     me.i3 = {
       background = ../../home/i3/background/nixos_nord.png;
