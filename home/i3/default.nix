@@ -2,11 +2,11 @@
 let
   cfg = config.hfreeb.graphical;
 in {
-  options.hfreeb.graphical = {
-    background = with lib; mkOption {
+  options.hfreeb.graphical = with lib; {
+    background = mkOption {
       type = types.path;
     };
-    wm.i3.monitorAssigns = with lib; mkOption {
+    wm.i3.monitorAssigns = mkOption {
       type = types.attrsOf types.str;
       default = {};
     };
