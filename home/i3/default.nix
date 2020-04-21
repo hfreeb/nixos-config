@@ -2,10 +2,6 @@
 let
   cfg = config.me.i3;
 in {
-  imports = [
-    ../dunst
-  ];
-
   options.me.i3 = {
     background = with lib; mkOption { type = types.path; };
     monitorAssigns = with lib; mkOption { type = types.attrsOf types.str; default = {}; };
@@ -35,10 +31,6 @@ in {
       exec i3
     '';
 
-    home.file.".config/i3/status.conf".text = builtins.readFile ./status.conf;
-
-    home.file.".config/i3/background.png".source = cfg.background;
-
     xsession.windowManager.i3 = rec {
       enable = true;
       config = let
@@ -51,8 +43,8 @@ in {
         white = "#ffffff";
       in rec {
         modifier = "Mod4";
-        terminal = "termite";
-        menu = "dmenu_run -p \"Run:\" -l 10";
+        terminal = "${pkgs.termite}/bin/termite";
+        menu = "${pkgs.dmenu}/bin/dmenu_run -p \"Run:\" -l 10";
         fonts = [ "Iosevka Term" "Font Awesome 8" ];
 
         window = {
@@ -99,26 +91,26 @@ in {
 
           "${modifier}+Shift+c" = "reload";
           "${modifier}+Shift+r" = "restart";
-          "${modifier}+Shift+e" = "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
+          "${modifier}+Shift+e" = "exec ${pkgs.i3}/bin/i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' '${pkgs.i3}/bin/i3-msg exit'";
 
           "${modifier}+r" = "mode resize";
 
-          "${modifier}+c" = "exec firefox";
-          "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
-          "${modifier}+e" = "exec termite -e ranger";
-          "${modifier}+s" = "exec maim -s | xclip -selection clipboard -t image/png";
-          "${modifier}+Shift+s" = "exec maim -s $HOME/Pictures/screenshots/$(date --iso-8601=\"seconds\").png";
-          "${modifier}+i" = "exec i3lock -t -i $HOME/.config/i3/background.png";
-          "${modifier}+Shift+i" = "exec i3lock -t -i $HOME/.config/i3/background.png && systemctl suspend";
+          "${modifier}+c" = "exec ${pkgs.firefox}/bin/firefox";
+          "${modifier}+Shift+d" = "exec --no-startup-id ${pkgs.i3}/bin/i3-dmenu-desktop";
+          "${modifier}+e" = "exec ${pkgs.termite}/bin/termite -e ${pkgs.ranger}/bin/ranger";
+          "${modifier}+s" = "exec ${pkgs.maim}/bin/maim -s | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png";
+          "${modifier}+Shift+s" = "exec ${pkgs.maim}/bin/maim -s $HOME/Pictures/screenshots/$(date --iso-8601=\"seconds\").png";
+          "${modifier}+i" = "exec i3lock -t -i ${cfg.background}";
+          "${modifier}+Shift+i" = "exec i3lock -t -i ${cfg.background} && ${pkgs.systemd}/bin/systemctl suspend";
 
           # Pulse Audio controls
-          "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%"; # increase sound volume
-          "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%"; # decrease sound volume
-          "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle"; # mute sound
+          "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 +5%"; # increase sound volume
+          "XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 -5%"; # decrease sound volume
+          "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle"; # mute sound
 
           # Screen brightness controls
-          "XF86MonBrightnessUp" = "exec xbacklight -inc 20"; # increase screen brightness
-          "XF86MonBrightnessDown" = "exec xbacklight -dec 20"; # decrease screen brightness
+          "XF86MonBrightnessUp" = "exec ${pkgs.xorg.xbacklight}/bin/xbacklight -inc 20"; # increase screen brightness
+          "XF86MonBrightnessDown" = "exec ${pkgs.xorg.xbacklight}/bin/xbacklight -dec 20"; # decrease screen brightness
         } // builtins.listToAttrs (lib.imap0 (i: v: {
           name = "${modifier}+Shift+${toString i}";
           value = "move container to workspace ${v.name}";
@@ -129,15 +121,15 @@ in {
 
         startup = [
           {
-            command = "feh --bg-scale $HOME/.config/i3/background.png";
+            command = "${pkgs.feh}/bin/feh --bg-scale ${cfg.background}";
             notification = false;
           }
           {
-            command = "i3-msg workspace " + (builtins.elemAt workspaces 1).name;
+            command = "${pkgs.i3}/bin/i3-msg workspace " + (builtins.elemAt workspaces 1).name;
             notification = false;
           }
           {
-            command = "dunst";
+            command = "${pkgs.dunst}/bin/dunst";
             notification = false;
           }
         ];
@@ -175,7 +167,7 @@ in {
 
         bars = [ {
           position = "top";
-          statusCommand = "i3status -c $HOME/.config/i3/status.conf";
+          statusCommand = "${pkgs.i3status}/bin/i3status -c ${./status.conf}";
           colors = {
             background = bg;
             focusedWorkspace = {

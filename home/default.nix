@@ -4,6 +4,7 @@
     ./fish
     ./git
     ./i3
+    ./dunst
     ./nvim
     ./termite
   ];
