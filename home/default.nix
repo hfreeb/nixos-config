@@ -1,5 +1,7 @@
 { pkgs, ... }:
-{
+let
+  unstable = import <nixos-unstable> { config.allowUnfree = true; };
+in {
   imports = [
     ./fish
     ./git
@@ -16,7 +18,7 @@
     sl
     weechat
     discord
-    jetbrains.idea-ultimate
+    unstable.jetbrains.idea-ultimate
     pulsemixer
     gimp
     neofetch
