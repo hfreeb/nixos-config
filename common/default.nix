@@ -102,7 +102,6 @@ in {
     };
     displayManager.startx.enable = true;
     displayManager.defaultSession = "none+i3";
-    desktopManager.xterm.enable = false;
     windowManager.i3.enable = true;
   };
 
@@ -128,5 +127,5 @@ in {
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "19.09";
+  system.stateVersion = "20.03";
 }
