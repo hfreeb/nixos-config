@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
-let
-  secrets = import ../secrets.nix;
+let secrets = import ../secrets.nix;
 in {
   boot.loader = {
     systemd-boot.enable = true;
@@ -10,7 +9,8 @@ in {
   networking.nameservers = [ "9.9.9.9" "149.112.112.112" ];
   # Generate read-only resolv.conf to stop dhcpcd appending to it.
   environment.etc."resolv.conf".text = ''
-    ${lib.concatStringsSep "\n" (map (ns: "nameserver ${ns}") config.networking.nameservers)}
+    ${lib.concatStringsSep "\n"
+    (map (ns: "nameserver ${ns}") config.networking.nameservers)}
     options edns0
   '';
 
@@ -18,7 +18,7 @@ in {
   i18n.defaultLocale = "en_GB.UTF-8";
 
   console = {
-    font= "Lat2-Terminus16";
+    font = "Lat2-Terminus16";
     useXkbConfig = true;
   };
 

@@ -9,7 +9,8 @@
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
-  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "xhci_pci" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules =
+    [ "ehci_pci" "ahci" "xhci_pci" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -24,9 +25,8 @@
     fsType = "vfat";
   };
 
-  swapDevices = [{
-    device = "/dev/disk/by-uuid/25107bc1-85d4-439f-808b-c4595065a617";
-  }];
+  swapDevices =
+    [{ device = "/dev/disk/by-uuid/25107bc1-85d4-439f-808b-c4595065a617"; }];
 
   nix.maxJobs = lib.mkDefault 4;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

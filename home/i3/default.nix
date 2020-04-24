@@ -47,7 +47,7 @@ in {
       in rec {
         modifier = "Mod4";
         terminal = "${pkgs.termite}/bin/termite";
-        menu = "${pkgs.dmenu}/bin/dmenu_run -p \"Run:\" -l 10";
+        menu = ''${pkgs.dmenu}/bin/dmenu_run -p "Run:" -l 10'';
         fonts = [ "Iosevka Term" "Font Awesome 8" ];
 
         window = {
@@ -60,10 +60,12 @@ in {
           titlebar = false;
         };
 
-        assigns = lib.listToAttrs (map (workspace: lib.mapAttrs'
-          (name: value: lib.nameValuePair (if name == "assigns" then "value" else name) value)
-          (lib.filterAttrs (name: _: name == "name" || name == "assigns") workspace)
-        ) workspaces);
+        assigns = lib.listToAttrs (map (workspace:
+          lib.mapAttrs' (name: value:
+            lib.nameValuePair (if name == "assigns" then "value" else name)
+            value)
+          (lib.filterAttrs (name: _: name == "name" || name == "assigns")
+            workspace)) workspaces);
 
         keybindings = {
           "${modifier}+Return" = "exec ${terminal}";
@@ -94,26 +96,37 @@ in {
 
           "${modifier}+Shift+c" = "reload";
           "${modifier}+Shift+r" = "restart";
-          "${modifier}+Shift+e" = "exec ${pkgs.i3}/bin/i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' '${pkgs.i3}/bin/i3-msg exit'";
+          "${modifier}+Shift+e" =
+            "exec ${pkgs.i3}/bin/i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' '${pkgs.i3}/bin/i3-msg exit'";
 
           "${modifier}+r" = "mode resize";
 
           "${modifier}+c" = "exec ${pkgs.firefox}/bin/firefox";
-          "${modifier}+Shift+d" = "exec --no-startup-id ${pkgs.i3}/bin/i3-dmenu-desktop";
-          "${modifier}+e" = "exec ${pkgs.termite}/bin/termite -e ${pkgs.ranger}/bin/ranger";
-          "${modifier}+s" = "exec ${pkgs.maim}/bin/maim -s | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png";
-          "${modifier}+Shift+s" = "exec ${pkgs.maim}/bin/maim -s $HOME/Pictures/screenshots/$(date --iso-8601=\"seconds\").png";
+          "${modifier}+Shift+d" =
+            "exec --no-startup-id ${pkgs.i3}/bin/i3-dmenu-desktop";
+          "${modifier}+e" =
+            "exec ${pkgs.termite}/bin/termite -e ${pkgs.ranger}/bin/ranger";
+          "${modifier}+s" =
+            "exec ${pkgs.maim}/bin/maim -s | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png";
+          "${modifier}+Shift+s" = ''
+            exec ${pkgs.maim}/bin/maim -s $HOME/Pictures/screenshots/$(date --iso-8601="seconds").png'';
           "${modifier}+i" = "exec i3lock -t -i ${cfg.background}";
-          "${modifier}+Shift+i" = "exec i3lock -t -i ${cfg.background} && ${pkgs.systemd}/bin/systemctl suspend";
+          "${modifier}+Shift+i" =
+            "exec i3lock -t -i ${cfg.background} && ${pkgs.systemd}/bin/systemctl suspend";
 
           # Pulse Audio controls
-          "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 +5%"; # increase sound volume
-          "XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 -5%"; # decrease sound volume
-          "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle"; # mute sound
+          "XF86AudioRaiseVolume" =
+            "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 +5%"; # increase sound volume
+          "XF86AudioLowerVolume" =
+            "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 -5%"; # decrease sound volume
+          "XF86AudioMute" =
+            "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle"; # mute sound
 
           # Screen brightness controls
-          "XF86MonBrightnessUp" = "exec ${pkgs.xorg.xbacklight}/bin/xbacklight -inc 20"; # increase screen brightness
-          "XF86MonBrightnessDown" = "exec ${pkgs.xorg.xbacklight}/bin/xbacklight -dec 20"; # decrease screen brightness
+          "XF86MonBrightnessUp" =
+            "exec ${pkgs.xorg.xbacklight}/bin/xbacklight -inc 20"; # increase screen brightness
+          "XF86MonBrightnessDown" =
+            "exec ${pkgs.xorg.xbacklight}/bin/xbacklight -dec 20"; # decrease screen brightness
         } // builtins.listToAttrs (lib.imap0 (i: v: {
           name = "${modifier}+Shift+${toString i}";
           value = "move container to workspace ${v.name}";
@@ -128,7 +141,8 @@ in {
             notification = false;
           }
           {
-            command = "${pkgs.i3}/bin/i3-msg workspace " + (builtins.elemAt workspaces 1).name;
+            command = "${pkgs.i3}/bin/i3-msg workspace "
+              + (builtins.elemAt workspaces 1).name;
             notification = false;
           }
           {
@@ -168,7 +182,7 @@ in {
           };
         };
 
-        bars = [ {
+        bars = [{
           position = "top";
           statusCommand = "${pkgs.i3status}/bin/i3status -c ${./status.conf}";
           colors = {
@@ -194,13 +208,14 @@ in {
               text = bg;
             };
           };
-        } ];
+        }];
       };
 
-      extraConfig = lib.concatStringsSep "\n" (lib.mapAttrsToList
-        (name: value: "workspace \"${(builtins.elemAt workspaces (lib.toInt name)).name}\" output ${value}")
-        cfg.wm.i3.monitorAssigns
-      );
+      extraConfig = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: value:
+        ''
+          workspace "${
+            (builtins.elemAt workspaces (lib.toInt name)).name
+          }" output ${value}'') cfg.wm.i3.monitorAssigns);
     };
   };
 }

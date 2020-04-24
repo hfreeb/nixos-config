@@ -10,7 +10,8 @@
     zfs rollback -r rpool/local/root@blank
   '';
 
-  environment.etc."nixos/configuration.nix".source= "/persist/etc/nixos/machines/desktop/configuration.nix";
+  environment.etc."nixos/configuration.nix".source =
+    "/persist/etc/nixos/machines/desktop/configuration.nix";
 
   networking.hostId = "45a9c894";
   networking.hostName = "halifax";
@@ -18,7 +19,7 @@
   networking.interfaces.enp3s0.useDHCP = true;
 
   nixpkgs.config.allowUnfree = true;
-  services.xserver= {
+  services.xserver = {
     videoDrivers = [ "nvidia" ];
     xrandrHeads = [
       { output = "DVI-I-1"; primary = true; }

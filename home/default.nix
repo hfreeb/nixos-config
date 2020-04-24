@@ -1,6 +1,5 @@
 { pkgs, ... }:
-let
-  unstable = import <nixos-unstable> { config.allowUnfree = true; };
+let unstable = import <nixos-unstable> { config.allowUnfree = true; };
 in {
   imports = [
     ./fish
