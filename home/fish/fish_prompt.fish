@@ -60,8 +60,6 @@ function fish_prompt
   end
   echo -e ''
 
-  # Terminate with a nice prompt char
-
   if test "$fish_key_bindings" = "fish_vi_key_bindings"
     switch $fish_bind_mode
       case default
@@ -70,7 +68,7 @@ function fish_prompt
       case insert
         set_color --bold green
         echo -n 🅸
-      case replace-one
+      case replace_one
         set_color --bold green
         echo -n 🆁
       case visual
@@ -81,5 +79,6 @@ function fish_prompt
     printf " "
   end
 
+  # Terminate with a nice prompt char
   echo -e -n -s $prompt_color '⟩ ' $normal
 end
