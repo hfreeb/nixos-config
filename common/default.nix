@@ -40,9 +40,7 @@ in {
     };
   };
 
-  fonts.fonts = with pkgs; [
-    font-awesome iosevka-term
-  ];
+  fonts.fonts = with pkgs; [ font-awesome iosevka-term ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
