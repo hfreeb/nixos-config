@@ -37,13 +37,13 @@
     };
 
   fileSystems."/mnt/d" =
-    { device = "/dev/sda1";
+    { device = "/dev/disk/by-uuid/4AE4DF5AE4DF46BB";
       fsType = "ntfs";
       options = [ "rw" "uid=1000" ];
     };
 
   fileSystems."/mnt/one" =
-    { device = "/dev/sdb1";
+    { device = "/dev/disk/by-uuid/B46CA7006CA6BD0C";
       fsType = "ntfs";
       options = [ "rw" "uid=1000" ];
     };
