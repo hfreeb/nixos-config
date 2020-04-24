@@ -32,7 +32,7 @@
       minecraft
       runelite
       (writeShellScriptBin "archive"
-        "${pkgs.coreutils}/bin/cp -i -v --target-directory=/mnt/two/archive/other/ $@")
+        "${pkgs.coreutils}/bin/cp -i -v --target-directory=/mnt/one/archive/other/ $@")
     ];
 
     hfreeb.graphical = {

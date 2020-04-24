@@ -13,6 +13,10 @@ function _git_is_dirty
   echo (command git status -s --ignore-submodules=dirty 2> /dev/null)
 end
 
+function fish_mode_prompt --description "Displays the current mode"
+  # Do nothing, do this inside fish_prompt
+end
+
 function fish_prompt
   set -l last_status $status
 
@@ -54,8 +58,28 @@ function fish_prompt
   if test $last_status = 0
     set prompt_color $normal
   end
+  echo -e ''
 
   # Terminate with a nice prompt char
-  echo -e ''
+
+  if test "$fish_key_bindings" = "fish_vi_key_bindings"
+    switch $fish_bind_mode
+      case default
+        set_color --bold red
+        echo -n 🅽
+      case insert
+        set_color --bold green
+        echo -n 🅸
+      case replace-one
+        set_color --bold green
+        echo -n 🆁
+      case visual
+        set_color --bold brmagenta
+        echo -n 🆅
+    end
+    set_color normal
+    printf " "
+  end
+
   echo -e -n -s $prompt_color '⟩ ' $normal
 end

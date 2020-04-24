@@ -42,7 +42,7 @@
       options = [ "rw" "uid=1000" ];
     };
 
-  fileSystems."/mnt/two" =
+  fileSystems."/mnt/one" =
     { device = "/dev/sdb1";
       fsType = "ntfs";
       options = [ "rw" "uid=1000" ];
