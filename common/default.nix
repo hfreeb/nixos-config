@@ -76,7 +76,7 @@ in {
     neovim
     openjdk11
     gnumake
-    p7zip
+    archiver
     openconnect_pa
     tree
     nmap
