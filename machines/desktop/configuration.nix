@@ -4,6 +4,7 @@
     <home-manager/nixos>
     ./hardware-configuration.nix
     ../../common
+    ../../common/gaming.nix
   ];
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''
@@ -25,6 +26,9 @@
       { output = "DVI-I-1"; primary = true; }
       "DVI-D-0"
     ];
+    screenSection = ''
+      Option "metamodes" "DVI-I-1: nvidia-auto-select @1920x1080 +0+0 {ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0}, DVI-D-0: 1920x1080_144 @1920x1080 +1920+0 {ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+    '';
   };
 
   home-manager.users.harry = { ... }: {
