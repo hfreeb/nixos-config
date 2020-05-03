@@ -18,6 +18,7 @@ in {
     weechat
     discord
     unstable.jetbrains.idea-ultimate
+    unstable.jetbrains.clion
     pulsemixer
     gimp
     neofetch

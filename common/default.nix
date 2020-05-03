@@ -53,10 +53,12 @@ in {
       scipy
       matplotlib
       pandas
+      compiledb
     ]);
   in with pkgs; [
     gcc
     binutils
+    nasm
     wget
     firefox
     lastpass-cli
