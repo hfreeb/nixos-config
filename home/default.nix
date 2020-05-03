@@ -1,5 +1,10 @@
 { pkgs, ... }:
-let unstable = import <nixos-unstable> { config.allowUnfree = true; };
+let unstable = import (builtins.fetchGit {
+    url = "https://github.com/NixOS/nixpkgs-channels.git";
+    rev = "fce7562cf46727fdaf801b232116bc9ce0512049"; # 2020-05-01
+  }) {
+    config.allowUnfree = true;
+  };
 in {
   imports = [
     ./fish

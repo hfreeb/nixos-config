@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 {
   imports = [
-    <home-manager/nixos>
+    (import ../../home/channel.nix)
     ./hardware-configuration.nix
     ../../common
     ../../common/gaming.nix
