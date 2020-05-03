@@ -19,7 +19,6 @@ in {
 
   home.packages = with pkgs; [
     cmatrix
-    sl
     weechat
     discord
     unstable.jetbrains.idea-ultimate
