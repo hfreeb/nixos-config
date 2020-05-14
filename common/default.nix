@@ -80,6 +80,7 @@ in {
     mypy
     neovim
     openjdk11
+    openjdk8
     gnumake
     archiver
     openconnect_pa
