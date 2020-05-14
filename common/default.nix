@@ -64,6 +64,11 @@ in {
     lastpass-cli
     chromium
     termite
+    pkgsCross.i686-embedded.buildPackages.gcc
+    gdb
+    grub2
+    xorriso
+    qemu
     git
     ranger
     hwinfo
