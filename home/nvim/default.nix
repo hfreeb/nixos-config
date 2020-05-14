@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  home.packages = with pkgs; [ ccls ];
+
   home.file.".config/nvim/coc-settings.json".source = ./coc-settings.json;
 
   programs.neovim = {
@@ -13,6 +15,7 @@
       vim-nix
       coc-nvim
       coc-python
+      ctrlp-vim
     ];
   };
 }
