@@ -46,47 +46,47 @@ in {
   # $ nix search wget
   environment.systemPackages = let
     mypy = pkgs.python3.withPackages(p: with p; [
-      pylint
-      jedi
-      numpy
-      jupyterlab
-      scipy
-      matplotlib
-      pandas
       compiledb
+      jedi
+      jupyterlab
+      matplotlib
+      numpy
+      pandas
+      pylint
+      scipy
     ]);
   in with pkgs; [
-    gcc
+    archiver
     binutils
-    nasm
-    wget
-    firefox
-    lastpass-cli
     chromium
-    termite
-    pkgsCross.i686-embedded.buildPackages.gcc
+    file
+    firefox
+    gcc
     gdb
-    grub2
-    xorriso
-    qemu
     git
-    ranger
-    hwinfo
-    pciutils
+    gnumake
     go
-    gotools
     golint
-    nodejs
+    gotools
+    grub2
+    hwinfo
+    lastpass-cli
     mypy
+    nasm
     neovim
+    nmap
+    nodejs
+    openconnect_pa
     openjdk11
     openjdk8
-    gnumake
-    archiver
-    openconnect_pa
+    pciutils
+    pkgsCross.i686-embedded.buildPackages.gcc
+    qemu
+    ranger
+    termite
     tree
-    nmap
-    file
+    wget
+    xorriso
   ];
 
   programs.gnupg.agent.enable = true;

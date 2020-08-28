@@ -7,10 +7,10 @@ let unstable = import (builtins.fetchTarball {
   };
 in {
   imports = [
+    ./dunst
     ./fish
     ./git
     ./i3
-    ./dunst
     ./nvim
     ./termite
   ];
@@ -18,23 +18,23 @@ in {
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    cmatrix
-    weechat
-    unstable.discord
-    unstable.jetbrains.idea-ultimate
-    unstable.jetbrains.clion
-    pulsemixer
-    gimp
-    neofetch
-    zathura
-    feh
-    maim
-    libreoffice
-    xclip
-    vlc
-    texlive.combined.scheme-basic
-    jwhois
     (callPackage ./1password { })
+    cmatrix
+    feh
+    gimp
+    jwhois
+    libreoffice
+    maim
+    neofetch
+    pulsemixer
+    texlive.combined.scheme-basic
+    unstable.discord
+    unstable.jetbrains.clion
+    unstable.jetbrains.idea-ultimate
+    vlc
+    weechat
+    xclip
+    zathura
   ];
 
   home.sessionVariables = {
