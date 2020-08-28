@@ -20,7 +20,7 @@ in {
   home.packages = with pkgs; [
     cmatrix
     weechat
-    discord
+    unstable.discord
     unstable.jetbrains.idea-ultimate
     unstable.jetbrains.clion
     pulsemixer
