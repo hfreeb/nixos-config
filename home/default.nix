@@ -29,7 +29,11 @@ in {
     zathura
     feh
     maim
+    libreoffice
     xclip
+    vlc
+    texlive.combined.scheme-basic
+    jwhois
   ];
 
   home.sessionVariables = {
