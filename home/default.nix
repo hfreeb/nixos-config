@@ -34,6 +34,7 @@ in {
     vlc
     texlive.combined.scheme-basic
     jwhois
+    (callPackage ./1password { })
   ];
 
   home.sessionVariables = {
