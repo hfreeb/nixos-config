@@ -23,6 +23,7 @@ in {
     ghidra-bin
     gimp
     jwhois
+    keepassxc
     libreoffice
     maim
     neofetch
