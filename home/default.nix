@@ -20,6 +20,7 @@ in {
   home.packages = with pkgs; [
     cmatrix
     feh
+    ghidra-bin
     gimp
     jwhois
     libreoffice
