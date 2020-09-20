@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let unstable = import (builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/7f3a18d33b8159d2993484c7b35cf685bff7e4f9.tar.gz"; # 2020-08-26
-    sha256 = "0ldy4swb69dfcp3m4aprqcfqbrvw4pqdlzifascilqg0jbb2hw2l";
+    url = "https://github.com/NixOS/nixpkgs/archive/eb86bff30d874d7d65a7f7342dc81b70815a25df.tar.gz"; # 2020-09-20
+    sha256 = "0s11icdlsgpa6z2gjjkw60czfcysjvy3hdxqyzn0h7kxq5b2kvla";
   }) {
     config.allowUnfree = true;
   };
