@@ -18,7 +18,6 @@ in {
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    (callPackage ./1password { })
     cmatrix
     feh
     gimp
@@ -28,6 +27,7 @@ in {
     neofetch
     pulsemixer
     texlive.combined.scheme-basic
+    unstable._1password-gui
     unstable.discord
     unstable.jetbrains.clion
     unstable.jetbrains.idea-ultimate
