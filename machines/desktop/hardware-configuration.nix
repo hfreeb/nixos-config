@@ -8,32 +8,17 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "zfs" "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
-  fileSystems."/" = {
-    device = "rpool/local/root";
-    fsType = "zfs";
-  };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/eeb8e045-3535-409d-bd0e-3eb983c0fcc5";
+      fsType = "ext4";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/1A77-2835";
-    fsType = "vfat";
-  };
-
-  fileSystems."/nix" = {
-    device = "rpool/local/nix";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home" = {
-    device = "rpool/safe/home";
-    fsType = "zfs";
-  };
-
-  fileSystems."/persist" = {
-    device = "rpool/safe/persist";
-    fsType = "zfs";
-  };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/1A77-2835";
+      fsType = "vfat";
+    };
 
   fileSystems."/mnt/d" = {
     device = "/dev/disk/by-uuid/4AE4DF5AE4DF46BB";
