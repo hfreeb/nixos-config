@@ -1,4 +1,4 @@
-{ nixpkgs, lib, ... }:
+{ lib, ... }:
 
 {
   boot.initrd.availableKernelModules =
