@@ -71,6 +71,7 @@ in {
     gcc
     gdb
     git
+    git-crypt
     gnumake
     go
     golint
