@@ -25,7 +25,14 @@ in {
   # Set your time zone.
   time.timeZone = "Europe/London";
 
+  nix.package = pkgs.nixUnstable;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
+
   nixpkgs.config = {
+    allowUnfree = true;
+
     packageOverrides = super: let self = super.pkgs; in {
       iosevka-term = self.iosevka.override {
         set = "term";

@@ -1,7 +1,6 @@
 { pkgs, lib, ... }:
 {
   imports = [
-    (import ../../home/channel.nix)
     ./hardware-configuration.nix
     ../../common
     ../../common/gaming.nix
@@ -24,22 +23,27 @@
     '';
   };
 
-  home-manager.users.harry = { ... }: {
-    imports = [ ../../home ];
-    home.packages = with pkgs; [
-      minecraft
-      runelite
-      (writeShellScriptBin "archive"
-        "${pkgs.coreutils}/bin/cp -i -v --target-directory=/mnt/one/archive/other/ $@")
-    ];
+  home-manager = {
+    useGlobalPkgs = true;
 
-    hfreeb.graphical = {
-      background = ../../home/i3/background/nixos_nord.png;
-      wm.i3.monitorAssigns = {
-        "1" = "DVI-D-1";
-        "2" = "DVI-I-1";
-        "3" = "DVI-D-1";
-        "4" = "DVI-I-1";
+    users.harry = { ... }: {
+      imports = [ ../../home ];
+
+      home.packages = with pkgs; [
+        minecraft
+        runelite
+        (writeShellScriptBin "archive"
+          "${pkgs.coreutils}/bin/cp -i -v --target-directory=/mnt/one/archive/other/ $@")
+      ];
+
+      hfreeb.graphical = {
+        background = ../../home/i3/background/nixos_nord.png;
+        wm.i3.monitorAssigns = {
+          "1" = "DVI-D-1";
+          "2" = "DVI-I-1";
+          "3" = "DVI-D-1";
+          "4" = "DVI-I-1";
+        };
       };
     };
   };

@@ -12,10 +12,14 @@
   networking.interfaces.wlp3s0.useDHCP = true;
   networking.wireless.enable = true;
 
-  home-manager.users.harry = { ... }: {
-    imports = [ ../../home ];
+  home-manager = {
+    useGlobalPkgs = true;
 
-    hfreeb.graphical.background =
-      ../../home/i3/background/earth_at_night_1366x768.png;
+    users.harry = { ... }: {
+      imports = [ ../../home ];
+
+      hfreeb.graphical.background =
+        ../../home/i3/background/earth_at_night_1366x768.png;
+    };
   };
 }
