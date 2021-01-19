@@ -2,6 +2,7 @@
 {
   programs.fish = {
     enable = true;
+    promptInit = builtins.readFile ./fish_prompt.fish;
     shellInit = ''
       function fish_greeting
         status --is-login
@@ -9,9 +10,7 @@
           ${./doomsday.py}
         end
       end
-
       fish_vi_key_bindings
     '';
-    promptInit = builtins.readFile ./fish_prompt.fish;
   };
 }
