@@ -9,10 +9,14 @@
   ];
 
   home.packages = with pkgs; [
+    _1password-gui
     cmatrix
+    discord
     feh
     ghidra-bin
     gimp
+    jetbrains.clion
+    jetbrains.idea-ultimate
     jwhois
     keepassxc
     libreoffice
@@ -20,10 +24,6 @@
     neofetch
     pulsemixer
     texlive.combined.scheme-basic
-    unstable._1password-gui
-    unstable.discord
-    unstable.jetbrains.clion
-    unstable.jetbrains.idea-ultimate
     vlc
     weechat
     xclip
