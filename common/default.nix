@@ -165,7 +165,7 @@ in {
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     createHome = true;
     home = "/home/harry";
-    shell = "/run/current-system/sw/bin/fish";
+    shell = pkgs.fish;
     hashedPassword = secrets.hashedPassword;
   };
   security.sudo.extraConfig = "Defaults lecture=never";
