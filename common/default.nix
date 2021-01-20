@@ -30,25 +30,13 @@ in {
     experimental-features = nix-command flakes
   '';
 
-  nixpkgs.overlays = [
-    (import ../overlays/update.nix)
-  ];
+  nixpkgs = {
+    config.allowUnfree = true;
 
-  nixpkgs.config = {
-    allowUnfree = true;
-
-    packageOverrides = super: let self = super.pkgs; in {
-      iosevka-term = self.iosevka.override {
-        set = "term";
-        privateBuildPlan = {
-          family = "Iosevka Term";
-          design = [
-            "term" "v-l-italic" "v-i-italic" "v-g-singlestorey"
-            "v-asterisk-high" "v-at-long" "v-brace-straight"
-          ];
-        };
-      };
-    };
+    overlays = [
+      (import ../overlays/updates.nix)
+      (import ../overlays/fonts.nix)
+    ];
   };
 
   fonts.fonts = with pkgs; [ font-awesome iosevka-term ];
