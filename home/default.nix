@@ -24,4 +24,6 @@
       "application/pdf" = "zathura";
     };
   };
+
+  xdg.configFile."mimeapps.list".force = true; # Force overwrite
 }
