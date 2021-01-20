@@ -1,16 +1,15 @@
 { ... }:
 {
   imports = [
-    (import ../../home/channel.nix)
     ./hardware-configuration.nix
-    ../../common
+    ../../modules/common.nix
   ];
 
   networking.hostName = "harrogate";
-  networking.useDHCP = false;
+
+  networking.wireless.enable = true;
   networking.interfaces.enp0s25.useDHCP = true;
   networking.interfaces.wlp3s0.useDHCP = true;
-  networking.wireless.enable = true;
 
   home-manager = {
     useGlobalPkgs = true;

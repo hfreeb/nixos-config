@@ -2,16 +2,14 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../common
-    ../../common/gaming.nix
+    ../../modules/common.nix
+    ../../modules/gaming
+    ../../modules/electronics
   ];
 
-  networking.hostId = "45a9c894";
   networking.hostName = "halifax";
-  networking.useDHCP = false;
   networking.interfaces.enp3s0.useDHCP = true;
 
-  nixpkgs.config.allowUnfree = true;
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     xrandrHeads = [
@@ -30,8 +28,6 @@
       imports = [ ../../home ];
 
       home.packages = with pkgs; [
-        minecraft
-        runelite
         (writeShellScriptBin "archive"
           "${pkgs.coreutils}/bin/cp -i -v --target-directory=/mnt/one/archive/other/ $@")
       ];
