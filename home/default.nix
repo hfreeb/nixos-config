@@ -8,28 +8,6 @@
     ./termite
   ];
 
-  home.packages = with pkgs; [
-    _1password-gui
-    cmatrix
-    discord
-    feh
-    ghidra-bin
-    gimp
-    jetbrains.clion
-    jetbrains.idea-ultimate
-    jwhois
-    keepassxc
-    libreoffice
-    maim
-    neofetch
-    pulsemixer
-    texlive.combined.scheme-basic
-    vlc
-    weechat
-    xclip
-    zathura
-  ];
-
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "termite";

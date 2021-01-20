@@ -62,44 +62,90 @@ in {
       jupyterlab
       matplotlib
       numpy
+      (opencv4.override (old : { enableGtk2 = true; }))
       pandas
       pylint
       scipy
     ]);
   in with pkgs; [
+    _1password-gui
+    ant
     archiver
     binutils
+    breeze-icons
+    cabal-install
     chromium
+    cmatrix
+    discord
+    eclipses.eclipse-java
+    exif
+    feh
     file
     firefox
     gcc
     gdb
+    ghc
+    ghidra-bin
+    gimp
     git
     git-crypt
+    gnome3.adwaita-icon-theme
     gnumake
     go
+    gobuster
     golint
     gotools
+    gprolog
     grub2
+    gtkwave
     hwinfo
+    imagemagick7
+    jetbrains.clion
+    jetbrains.idea-ultimate
+    john
+    jwhois
+    keepassxc
+    ktlint
     lastpass-cli
+    libgit2
+    libreoffice
+    maim
     mypy
     nasm
+    neofetch
     neovim
     nmap
     nodejs
     openconnect_pa
-    openjdk11
-    openjdk8
+    openvpn
     pciutils
-    pkgsCross.i686-embedded.buildPackages.gcc
+    php
+    pulsemixer
     qemu
     ranger
+    rethinkdb
+    spotify
+    swiProlog
+    teams
     termite
+    texlive.combined.scheme-full
     tree
+    verilog
+    vlc
+    vscode
+    weechat
     wget
+    wireshark
+    xclip
     xorriso
+    zathura
+    zoom-us
   ];
+
+  programs.java = {
+    enable = true;
+    package = pkgs.openjdk11;
+  };
 
   programs.gnupg.agent.enable = true;
 
