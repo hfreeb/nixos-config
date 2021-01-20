@@ -30,6 +30,10 @@ in {
     experimental-features = nix-command flakes
   '';
 
+  nixpkgs.overlays = [
+    (import ../overlays/update.nix)
+  ];
+
   nixpkgs.config = {
     allowUnfree = true;
 
