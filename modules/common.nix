@@ -77,6 +77,7 @@ in
     keepassxc
     ktlint
     libgit2
+    libnotify
     libreoffice
     maim
     nasm
